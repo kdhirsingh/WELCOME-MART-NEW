@@ -1,0 +1,2267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome Mart — Your Everyday Shopping Destination</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --gold: #f5b041;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font: 'Inter', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font);
+            color: var(--primary);
+            background: #fafafa;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        button {
+            cursor: pointer;
+            font-family: var(--font);
+            border: none;
+            background: none;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+        .section-sub {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 1.75rem;
+        }
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            letter-spacing: 0.3px;
+        }
+        .btn-primary:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(233, 69, 96, 0.3);
+        }
+        .btn-outline {
+            display: inline-block;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .badge-new {
+            background: #2ecc71;
+        }
+        .badge-sale {
+            background: var(--accent);
+        }
+        .badge-bestseller {
+            background: #f39c12;
+        }
+
+        /* ===== TOP ANNOUNCEMENT ===== */
+        .top-bar {
+            background: var(--primary);
+            color: #e0e0e0;
+            font-size: 0.8rem;
+            padding: 6px 0;
+            text-align: center;
+            letter-spacing: 0.3px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1001;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+        .top-bar span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .top-bar i {
+            color: var(--gold);
+            font-size: 0.85rem;
+        }
+        .top-bar .rotating {
+            display: inline-block;
+            animation: rotateText 12s infinite;
+        }
+        @keyframes rotateText {
+            0%,
+            33% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            34%,
+            66% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            67%,
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--white);
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .header.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            padding: 4px 0;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        .logo span {
+            color: var(--accent);
+        }
+        .logo img {
+            height: 38px;
+            width: auto;
+        }
+        .search-wrap {
+            flex: 1;
+            max-width: 520px;
+            min-width: 180px;
+            position: relative;
+        }
+        .search-wrap input {
+            width: 100%;
+            padding: 10px 18px 10px 46px;
+            border-radius: 50px;
+            border: 2px solid #e9ecef;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            background: #f8f9fa;
+            font-family: var(--font);
+        }
+        .search-wrap input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(233, 69, 96, 0.08);
+        }
+        .search-wrap i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            font-size: 1rem;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-shrink: 0;
+        }
+        .header-actions a {
+            font-size: 1.2rem;
+            color: var(--primary);
+            transition: var(--transition);
+            position: relative;
+        }
+        .header-actions a:hover {
+            color: var(--accent);
+        }
+        .header-actions .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Navigation */
+        .nav-wrap {
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            background: var(--white);
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .nav-inner::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-inner a {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--primary);
+            transition: var(--transition);
+            white-space: nowrap;
+            border-radius: 50px;
+            position: relative;
+        }
+        .nav-inner a:hover,
+        .nav-inner a.active {
+            color: var(--accent);
+            background: rgba(233, 69, 96, 0.06);
+        }
+        .nav-inner .menu-icon {
+            font-size: 1.1rem;
+            padding: 8px 12px;
+        }
+        .nav-inner .menu-icon:hover {
+            background: transparent;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 24px 0 32px;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 65% 1fr;
+            gap: 20px;
+        }
+        .hero-main {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            min-height: 420px;
+            background: #1a1a2e;
+            display: flex;
+            align-items: center;
+            padding: 48px 40px;
+            background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+        }
+        .hero-main:hover {
+            transform: scale(1.01);
+        }
+        .hero-main::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.75) 20%, rgba(0, 0, 0, 0.3) 80%);
+            z-index: 1;
+        }
+        .hero-main-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            max-width: 500px;
+        }
+        .hero-main-content .tag {
+            display: inline-block;
+            background: var(--accent);
+            padding: 4px 18px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .hero-main-content h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+        .hero-main-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            max-width: 380px;
+        }
+        .hero-main-content .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .hero-main-content .btn-primary {
+            background: var(--accent);
+        }
+        .hero-main-content .btn-primary:hover {
+            background: #c0392b;
+            box-shadow: 0 12px 28px rgba(233, 69, 96, 0.4);
+        }
+        .hero-main-content .btn-outline {
+            border-color: rgba(255, 255, 255, 0.5);
+            color: #fff;
+        }
+        .hero-main-content .btn-outline:hover {
+            background: #fff;
+            color: var(--primary);
+            border-color: #fff;
+        }
+
+        .hero-side {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .hero-side-card {
+            flex: 1;
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            padding: 24px 28px;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+        }
+        .hero-side-card:hover {
+            transform: scale(1.02);
+        }
+        .hero-side-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.2));
+            z-index: 1;
+        }
+        .hero-side-card .content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+        }
+        .hero-side-card .content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .hero-side-card .content p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        .hero-side-card .content .btn-sm {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .hero-side-card .content .btn-sm:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        .hero-side-card.women {
+            background-image: url('https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=400&q=80');
+        }
+        .hero-side-card.men {
+            background-image: url('https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=400&q=80');
+        }
+
+        /* ===== QUICK CATEGORIES ===== */
+        .quick-cats {
+            padding: 8px 0 24px;
+        }
+        .quick-cats .scroll {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding: 8px 4px 16px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .quick-cats .scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .quick-cats .cat-item {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 20px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            min-width: 80px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .quick-cats .cat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+        .quick-cats .cat-item i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+        .quick-cats .cat-item span {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* ===== TRENDING ===== */
+        .trending {
+            padding: 40px 0;
+        }
+        .trending-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 28px;
+        }
+        .trending-sidebar {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            box-shadow: var(--shadow);
+            align-self: start;
+        }
+        .trending-sidebar h4 {
+            font-size: 1rem;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+        .sidebar-product {
+            display: flex;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f1f1;
+            align-items: center;
+        }
+        .sidebar-product:last-child {
+            border-bottom: none;
+        }
+        .sidebar-product img {
+            width: 52px;
+            height: 52px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .sidebar-product .info {
+            flex: 1;
+        }
+        .sidebar-product .info .name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .sidebar-product .info .price {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .sidebar-product .info .old {
+            font-size: 0.7rem;
+            color: var(--gray);
+            text-decoration: line-through;
+            margin-left: 6px;
+            font-weight: 400;
+        }
+        .sidebar-product .info .stars {
+            font-size: 0.6rem;
+            color: var(--gold);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        .product-card .img-wrap {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            background: #f5f5f5;
+        }
+        .product-card .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .product-card .img-wrap img.secondary {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+        .product-card:hover .img-wrap img.secondary {
+            opacity: 1;
+        }
+        .product-card:hover .img-wrap img.primary {
+            opacity: 0;
+        }
+        .product-card .img-wrap .wishlist {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        .product-card .img-wrap .wishlist:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .product-card .img-wrap .quickview {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: var(--transition);
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+        }
+        .product-card:hover .quickview {
+            bottom: 14px;
+        }
+        .product-card .img-wrap .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .product-card .info {
+            padding: 12px 14px 14px;
+        }
+        .product-card .info .name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .product-card .info .stars {
+            font-size: 0.7rem;
+            color: var(--gold);
+            margin: 2px 0;
+        }
+        .product-card .info .price-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .product-card .info .current {
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        .product-card .info .old {
+            color: var(--gray);
+            text-decoration: line-through;
+            font-size: 0.8rem;
+        }
+        .product-card .info .discount {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+        .product-card .add-cart {
+            margin-top: 10px;
+            width: 100%;
+            padding: 8px;
+            border-radius: 50px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .product-card .add-cart:hover {
+            background: var(--accent);
+            transform: scale(1.02);
+        }
+
+        /* ===== FLASH SALE ===== */
+        .flash-sale {
+            padding: 40px 0;
+            background: linear-gradient(135deg, #fff5f5, #fff);
+        }
+        .flash-sale .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .flash-sale .timer {
+            display: flex;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+        .flash-sale .timer span {
+            background: var(--primary);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 1.3rem;
+        }
+        .flash-sale .timer .label {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--gray);
+            background: transparent;
+            padding: 0 2px;
+        }
+        .flash-sale .progress {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .flash-sale .progress .bar {
+            flex: 1;
+            height: 6px;
+            border-radius: 10px;
+            background: #e9ecef;
+            overflow: hidden;
+        }
+        .flash-sale .progress .bar .fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 10px;
+            width: 60%;
+        }
+        .flash-sale .progress span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray);
+        }
+        .flash-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* ===== NEW ARRIVALS ===== */
+        .new-arrivals {
+            padding: 40px 0;
+        }
+        .tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .tabs button {
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            border: 1px solid #e9ecef;
+            background: transparent;
+            color: var(--gray);
+        }
+        .tabs button.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .tabs button:hover:not(.active) {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ===== PROMO BANNER ===== */
+        .promo-banner {
+            margin: 40px 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            padding: 48px 52px;
+            background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .promo-banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.2));
+            z-index: 1;
+        }
+        .promo-banner .content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            max-width: 480px;
+        }
+        .promo-banner .content h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+        .promo-banner .content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 18px;
+        }
+        .promo-banner .content .btn-primary {
+            background: var(--accent);
+        }
+        .promo-banner .content .btn-primary:hover {
+            background: #c0392b;
+        }
+
+        /* ===== SHOP BY CATEGORY ===== */
+        .shop-category {
+            padding: 40px 0;
+        }
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        .cat-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 1/1;
+            background: #1a1a2e;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .cat-card:hover {
+            transform: scale(1.04);
+        }
+        .cat-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
+            z-index: 1;
+        }
+        .cat-card .info {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            width: 100%;
+        }
+        .cat-card .info h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .cat-card .info .explore {
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0.8;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+        .cat-card:hover .info .explore {
+            opacity: 1;
+            gap: 12px;
+            color: var(--gold);
+        }
+        .cat-card.c1 {
+            background-image: url('https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&q=80');
+        }
+        .cat-card.c2 {
+            background-image: url('https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=400&q=80');
+        }
+        .cat-card.c3 {
+            background-image: url('https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&q=80');
+        }
+        .cat-card.c4 {
+            background-image: url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&q=80');
+        }
+        .cat-card.c5 {
+            background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&q=80');
+        }
+        .cat-card.c6 {
+            background-image: url('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=80');
+        }
+
+        /* ===== BEST SELLERS ===== */
+        .best-sellers {
+            padding: 40px 0;
+            background: #f8f9fa;
+        }
+
+        /* ===== WHY WELCMART ===== */
+        .why {
+            padding: 50px 0;
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 28px;
+        }
+        .why-item {
+            text-align: center;
+            padding: 24px 16px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .why-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+        }
+        .why-item i {
+            font-size: 2.4rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .why-item h4 {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .why-item p {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        /* ===== REVIEWS ===== */
+        .reviews {
+            padding: 40px 0;
+            background: var(--white);
+        }
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+        .review-card {
+            background: #f8f9fa;
+            padding: 20px 22px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+        .review-card .stars {
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+        .review-card .text {
+            font-size: 0.9rem;
+            margin: 8px 0;
+            font-style: italic;
+            color: var(--primary);
+        }
+        .review-card .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .review-card .author .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .review-card .author .name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .review-card .author .verify {
+            font-size: 0.65rem;
+            color: #2ecc71;
+            font-weight: 600;
+        }
+
+        /* ===== SOCIAL ===== */
+        .social {
+            padding: 40px 0;
+        }
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        .social-grid .item {
+            aspect-ratio: 1/1;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: #ddd;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+        .social-grid .item:hover {
+            transform: scale(1.04);
+        }
+        .social-grid .item::after {
+            content: '📸';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .social-grid .item:hover::after {
+            opacity: 1;
+        }
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .social-icons a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        .social-icons a:hover {
+            background: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            padding: 50px 0;
+            background: var(--primary);
+            color: #fff;
+            text-align: center;
+        }
+        .newsletter h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .newsletter p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .newsletter .form {
+            display: flex;
+            max-width: 480px;
+            margin: 0 auto;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .newsletter .form input {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 0.9rem;
+            min-width: 180px;
+            font-family: var(--font);
+        }
+        .newsletter .form button {
+            padding: 12px 32px;
+            border-radius: 50px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .newsletter .form button:hover {
+            background: #c0392b;
+            transform: scale(1.02);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #0f0f1a;
+            color: #ccc;
+            padding: 50px 0 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 30px;
+        }
+        .footer-brand .logo {
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .footer-brand p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            max-width: 280px;
+            line-height: 1.6;
+        }
+        .footer-brand .social {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            padding: 0;
+            background: transparent;
+        }
+        .footer-brand .social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .footer-brand .social a:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+        .footer h4 {
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .footer ul {
+            list-style: none;
+        }
+        .footer ul li {
+            margin-bottom: 6px;
+        }
+        .footer ul li a {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        .footer ul li a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-bottom .payments {
+            display: flex;
+            gap: 12px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+        .footer-bottom .payments i {
+            font-size: 1.6rem;
+        }
+        .footer-bottom .copy {
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        /* ===== MOBILE BOTTOM NAV ===== */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-top: 1px solid #e9ecef;
+            padding: 8px 0 env(safe-area-inset-bottom, 8px);
+            z-index: 1002;
+            justify-content: space-around;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .mobile-bottom-nav a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.6rem;
+            color: var(--gray);
+            transition: var(--transition);
+            gap: 2px;
+        }
+        .mobile-bottom-nav a i {
+            font-size: 1.2rem;
+        }
+        .mobile-bottom-nav a.active {
+            color: var(--accent);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-side {
+                flex-direction: row;
+            }
+            .hero-side-card {
+                min-height: 140px;
+                flex: 1;
+            }
+            .trending-grid {
+                grid-template-columns: 1fr;
+            }
+            .trending-sidebar {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 12px;
+                padding: 16px;
+            }
+            .trending-sidebar h4 {
+                grid-column: 1 / -1;
+            }
+            .sidebar-product {
+                border-bottom: none;
+                padding: 6px 0;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .top-bar .container {
+                gap: 12px;
+                font-size: 0.7rem;
+                flex-direction: column;
+                padding: 4px 12px;
+            }
+            .top-bar span {
+                white-space: nowrap;
+            }
+            .header-inner {
+                flex-wrap: nowrap;
+                padding: 8px 0;
+            }
+            .search-wrap {
+                display: none;
+            }
+            .logo {
+                font-size: 1.2rem;
+            }
+            .logo img {
+                height: 30px;
+            }
+            .header-actions {
+                gap: 12px;
+            }
+            .header-actions a {
+                font-size: 1rem;
+            }
+            .nav-wrap {
+                display: none;
+            }
+            .hero-main {
+                min-height: 280px;
+                padding: 28px 24px;
+            }
+            .hero-main-content h1 {
+                font-size: 1.8rem;
+            }
+            .hero-main-content p {
+                font-size: 0.9rem;
+            }
+            .hero-side {
+                flex-direction: column;
+            }
+            .hero-side-card {
+                min-height: 120px;
+                padding: 16px 20px;
+            }
+            .hero-side-card .content h3 {
+                font-size: 1rem;
+            }
+            .product-grid,
+            .flash-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .promo-banner {
+                padding: 32px 24px;
+                min-height: 200px;
+                background-attachment: scroll;
+            }
+            .promo-banner .content h2 {
+                font-size: 1.6rem;
+            }
+            .cat-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            .cat-card {
+                aspect-ratio: 1/1;
+                padding: 12px;
+            }
+            .cat-card .info h4 {
+                font-size: 0.85rem;
+            }
+            .why-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+            .social-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .mobile-bottom-nav {
+                display: flex;
+            }
+            body {
+                padding-bottom: 70px;
+            }
+            .flash-sale .timer {
+                font-size: 1.2rem;
+            }
+            .flash-sale .timer span {
+                font-size: 1rem;
+                padding: 2px 10px;
+            }
+            .trending-sidebar {
+                grid-template-columns: 1fr 1fr;
+            }
+            .newsletter .form {
+                flex-direction: column;
+            }
+            .newsletter .form input {
+                width: 100%;
+            }
+            .newsletter .form button {
+                width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-main-content h1 {
+                font-size: 1.4rem;
+            }
+            .hero-main-content .cta-group .btn-primary,
+            .hero-main-content .cta-group .btn-outline {
+                padding: 8px 18px;
+                font-size: 0.75rem;
+            }
+            .product-grid,
+            .flash-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .cat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .why-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== TOP ANNOUNCEMENT ===== -->
+    <div class="top-bar">
+        <div class="container">
+            <span><i class="fas fa-truck"></i> Free Shipping Across India</span>
+            <span><i class="fas fa-lock"></i> Secure Payments</span>
+            <span><i class="fas fa-undo-alt"></i> Easy Returns</span>
+            <span class="rotating"><i class="fas fa-gift"></i> New Collection Live!</span>
+        </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">
+                    <span>Welcome</span>Mart
+                </a>
+                <div class="search-wrap">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search products, brands & categories..." />
+                </div>
+                <div class="header-actions">
+                    <a href="#" aria-label="Wishlist"><i class="far fa-heart"></i></a>
+                    <a href="#" aria-label="Account"><i class="far fa-user"></i></a>
+                    <a href="#" aria-label="Cart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">2</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="nav-wrap">
+            <div class="container">
+                <div class="nav-inner">
+                    <a href="#" class="menu-icon"><i class="fas fa-bars"></i></a>
+                    <a href="#" class="active">Home</a>
+                    <a href="#">Shop</a>
+                    <a href="#">Men</a>
+                    <a href="#">Women</a>
+                    <a href="#">Footwear</a>
+                    <a href="#">Accessories</a>
+                    <a href="#">Beauty</a>
+                    <a href="#">Lifestyle</a>
+                    <a href="#">New Arrivals</a>
+                    <a href="#">Sale</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-main">
+                    <div class="hero-main-content">
+                        <span class="tag">New Collection</span>
+                        <h1>Discover Your Everyday Style</h1>
+                        <p>Trending fashion, lifestyle essentials and everyday favorites — all in one place.</p>
+                        <div class="cta-group">
+                            <a href="#" class="btn-primary">SHOP NOW →</a>
+                            <a href="#" class="btn-outline">EXPLORE COLLECTION</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-side">
+                    <div class="hero-side-card women">
+                        <div class="content">
+                            <h3>Women's Collection</h3>
+                            <p>Up to 50% Off</p>
+                            <a href="#" class="btn-sm">SHOP NOW →</a>
+                        </div>
+                    </div>
+                    <div class="hero-side-card men">
+                        <div class="content">
+                            <h3>Men's Collection</h3>
+                            <p>New Styles Are Here</p>
+                            <a href="#" class="btn-sm">EXPLORE →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== QUICK CATEGORIES ===== -->
+    <section class="quick-cats">
+        <div class="container">
+            <div class="scroll">
+                <div class="cat-item"><i class="fas fa-th-large"></i><span>All</span></div>
+                <div class="cat-item"><i class="fas fa-male"></i><span>Men</span></div>
+                <div class="cat-item"><i class="fas fa-female"></i><span>Women</span></div>
+                <div class="cat-item"><i class="fas fa-shoe-prints"></i><span>Footwear</span></div>
+                <div class="cat-item"><i class="fas fa-gem"></i><span>Accessories</span></div>
+                <div class="cat-item"><i class="fas fa-spa"></i><span>Beauty</span></div>
+                <div class="cat-item"><i class="fas fa-home"></i><span>Lifestyle</span></div>
+                <div class="cat-item"><i class="fas fa-fire"></i><span>Trending</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRENDING ===== -->
+    <section class="trending" id="trending">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Trending Now</h2>
+                    <p class="section-sub">Discover what shoppers are loving right now.</p>
+                </div>
+                <a href="#" class="btn-outline" style="font-size:0.8rem;">View All →</a>
+            </div>
+            <div class="trending-grid">
+                <div class="trending-sidebar">
+                    <h4>⭐ Best Sellers</h4>
+                    <div class="sidebar-product">
+                        <img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=80&q=80" alt="product" />
+                        <div class="info">
+                            <div class="name">Floral Dress</div>
+                            <div class="stars">★★★★★</div>
+                            <div class="price">₹1,299 <span class="old">₹2,499</span></div>
+                        </div>
+                    </div>
+                    <div class="sidebar-product">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=80&q=80" alt="product" />
+                        <div class="info">
+                            <div class="name">Slim Fit Jeans</div>
+                            <div class="stars">★★★★☆</div>
+                            <div class="price">₹1,899 <span class="old">₹2,999</span></div>
+                        </div>
+                    </div>
+                    <div class="sidebar-product">
+                        <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=80&q=80" alt="product" />
+                        <div class="info">
+                            <div class="name">Leather Sneakers</div>
+                            <div class="stars">★★★★★</div>
+                            <div class="price">₹2,499 <span class="old">₹4,999</span></div>
+                        </div>
+                    </div>
+                    <div class="sidebar-product">
+                        <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=80&q=80" alt="product" />
+                        <div class="info">
+                            <div class="name">Classic Watch</div>
+                            <div class="stars">★★★★☆</div>
+                            <div class="price">₹3,199 <span class="old">₹5,999</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="img-wrap">
+                            <img class="primary" src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=400&q=80" alt="product" />
+                            <img class="secondary" src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400&q=80" alt="product hover" />
+                            <span class="badge badge-sale">-40%</span>
+                            <button class="wishlist"><i class="far fa-heart"></i></button>
+                            <button class="quickview">Quick View</button>
+                        </div>
+                        <div class="info">
+                            <div class="name">Printed Maxi Dress</div>
+                            <div class="stars">★★★★★ (124)</div>
+                            <div class="price-row">
+                                <span class="current">₹1,299</span>
+                                <span class="old">₹2,199</span>
+                                <span class="discount">-40%</span>
+                            </div>
+                            <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="img-wrap">
+                            <img class="primary" src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=400&q=80" alt="product" />
+                            <img class="secondary" src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=400&q=80" alt="product hover" />
+                            <span class="badge badge-sale">-25%</span>
+                            <button class="wishlist"><i class="far fa-heart"></i></button>
+                            <button class="quickview">Quick View</button>
+                        </div>
+                        <div class="info">
+                            <div class="name">Slim Fit Chinos</div>
+                            <div class="stars">★★★★☆ (89)</div>
+                            <div class="price-row">
+                                <span class="current">₹1,899</span>
+                                <span class="old">₹2,499</span>
+                                <span class="discount">-25%</span>
+                            </div>
+                            <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="img-wrap">
+                            <img class="primary" src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&q=80" alt="product" />
+                            <img class="secondary" src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&q=80" alt="product hover" />
+                            <span class="badge badge-new">New</span>
+                            <button class="wishlist"><i class="far fa-heart"></i></button>
+                            <button class="quickview">Quick View</button>
+                        </div>
+                        <div class="info">
+                            <div class="name">Retro Sneakers</div>
+                            <div class="stars">★★★★★ (201)</div>
+                            <div class="price-row">
+                                <span class="current">₹2,499</span>
+                                <span class="old">₹4,999</span>
+                                <span class="discount">-50%</span>
+                            </div>
+                            <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="img-wrap">
+                            <img class="primary" src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&q=80" alt="product" />
+                            <img class="secondary" src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=400&q=80" alt="product hover" />
+                            <span class="badge badge-bestseller">Best Seller</span>
+                            <button class="wishlist"><i class="far fa-heart"></i></button>
+                            <button class="quickview">Quick View</button>
+                        </div>
+                        <div class="info">
+                            <div class="name">Chronograph Watch</div>
+                            <div class="stars">★★★★☆ (156)</div>
+                            <div class="price-row">
+                                <span class="current">₹3,199</span>
+                                <span class="old">₹5,999</span>
+                                <span class="discount">-47%</span>
+                            </div>
+                            <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FLASH SALE ===== -->
+    <section class="flash-sale">
+        <div class="container">
+            <div class="header">
+                <div>
+                    <h2 class="section-title" style="color:var(--accent);">🔥 Flash Sale</h2>
+                    <p class="section-sub">Limited-time deals. Don't miss out.</p>
+                </div>
+                <div class="timer">
+                    <span id="hours">05</span><span class="label">h</span>
+                    <span id="minutes">42</span><span class="label">m</span>
+                    <span id="seconds">18</span><span class="label">s</span>
+                </div>
+            </div>
+            <div class="progress">
+                <span>🔥 Limited Stock</span>
+                <div class="bar"><div class="fill" style="width:65%;"></div></div>
+                <span>65% sold</span>
+            </div>
+            <div class="flash-grid">
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img class="primary" src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=400&q=80" alt="product" />
+                        <span class="badge badge-sale">-60%</span>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="quickview">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <div class="name">Summer Floral Dress</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="price-row">
+                            <span class="current">₹999</span>
+                            <span class="old">₹2,499</span>
+                            <span class="discount">-60%</span>
+                        </div>
+                        <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img class="primary" src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=400&q=80" alt="product" />
+                        <span class="badge badge-sale">-55%</span>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="quickview">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <div class="name">Denim Jacket</div>
+                        <div class="stars">★★★★☆</div>
+                        <div class="price-row">
+                            <span class="current">₹1,799</span>
+                            <span class="old">₹3,999</span>
+                            <span class="discount">-55%</span>
+                        </div>
+                        <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img class="primary" src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&q=80" alt="product" />
+                        <span class="badge badge-sale">-40%</span>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="quickview">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <div class="name">Sport Sneakers</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="price-row">
+                            <span class="current">₹2,999</span>
+                            <span class="old">₹4,999</span>
+                            <span class="discount">-40%</span>
+                        </div>
+                        <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img class="primary" src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&q=80" alt="product" />
+                        <span class="badge badge-sale">-30%</span>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="quickview">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <div class="name">Leather Backpack</div>
+                        <div class="stars">★★★★☆</div>
+                        <div class="price-row">
+                            <span class="current">₹2,099</span>
+                            <span class="old">₹2,999</span>
+                            <span class="discount">-30%</span>
+                        </div>
+                        <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:20px;">
+                <a href="#" class="btn-primary">VIEW ALL DEALS →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEW ARRIVALS ===== -->
+    <section class="new-arrivals">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">New Arrivals</h2>
+                    <p class="section-sub">Fresh styles just dropped.</p>
+                </div>
+                <a href="#" class="btn-outline" style="font-size:0.8rem;">View All →</a>
+            </div>
+            <div class="tabs">
+                <button class="active">All</button>
+                <button>Men</button>
+                <button>Women</button>
+                <button>Footwear</button>
+                <button>Accessories</button>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img class="primary" src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400&q=80" alt="product" />
+                        <span class="badge badge-new">New</span>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="quickview">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <div class="name">Oversized Blazer</div>
+                        <div class="stars">★★★★☆</div>
+                        <div class="price-row"><span class="current">₹3,499</span><span class="old">₹5,999</span></div>
+                        <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img class="primary" src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=400&q=80" alt="product" />
+                        <span class="badge badge-new">New</span>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="quickview">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <div class="name">Cargo Pants</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="price-row"><span class="current">₹2,199</span><span class="old">₹3,499</span></div>
+                        <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img class="primary" src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&q=80" alt="product" />
+                        <span class="badge badge-new">New</span>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="quickview">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <div class="name">Running Shoes</div>
+                        <div class="stars">★★★★☆</div>
+                        <div class="price-row"><span class="current">₹4,499</span><span class="old">₹6,999</span></div>
+                        <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img class="primary" src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=400&q=80" alt="product" />
+                        <span class="badge badge-new">New</span>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="quickview">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <div class="name">Minimalist Watch</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="price-row"><span class="current">₹2,999</span><span class="old">₹4,499</span></div>
+                        <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROMO BANNER ===== -->
+    <section class="promo-banner">
+        <div class="content">
+            <h2>Upgrade Your Everyday Style</h2>
+            <p>Fresh styles. Everyday essentials. Better shopping.</p>
+            <a href="#" class="btn-primary">SHOP COLLECTION →</a>
+        </div>
+    </section>
+
+    <!-- ===== SHOP BY CATEGORY ===== -->
+    <section class="shop-category">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Explore Our Collections</h2>
+                    <p class="section-sub">Find what you love.</p>
+                </div>
+            </div>
+            <div class="cat-grid">
+                <div class="cat-card c1"><div class="info"><h4>Men</h4><span class="explore">Explore →</span></div></div>
+                <div class="cat-card c2"><div class="info"><h4>Women</h4><span class="explore">Explore →</span></div></div>
+                <div class="cat-card c3"><div class="info"><h4>Footwear</h4><span class="explore">Explore →</span></div></div>
+                <div class="cat-card c4"><div class="info"><h4>Accessories</h4><span class="explore">Explore →</span></div></div>
+                <div class="cat-card c5"><div class="info"><h4>Beauty</h4><span class="explore">Explore →</span></div></div>
+                <div class="cat-card c6"><div class="info"><h4>Lifestyle</h4><span class="explore">Explore →</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BEST SELLERS ===== -->
+    <section class="best-sellers">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Best Sellers</h2>
+                    <p class="section-sub">Customer favorites at Welcome Mart.</p>
+                </div>
+                <a href="#" class="btn-outline" style="font-size:0.8rem;">View All →</a>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img class="primary" src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=400&q=80" alt="product" />
+                        <span class="badge badge-bestseller">Best Seller</span>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="quickview">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <div class="name">Classic Maxi Dress</div>
+                        <div class="stars">★★★★★ (342)</div>
+                        <div class="price-row"><span class="current">₹1,499</span><span class="old">₹2,999</span></div>
+                        <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img class="primary" src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=400&q=80" alt="product" />
+                        <span class="badge badge-bestseller">Best Seller</span>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="quickview">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <div class="name">Slim Fit Jeans</div>
+                        <div class="stars">★★★★☆ (278)</div>
+                        <div class="price-row"><span class="current">₹1,899</span><span class="old">₹3,299</span></div>
+                        <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img class="primary" src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&q=80" alt="product" />
+                        <span class="badge badge-bestseller">Best Seller</span>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="quickview">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <div class="name">Air Max Sneakers</div>
+                        <div class="stars">★★★★★ (412)</div>
+                        <div class="price-row"><span class="current">₹3,499</span><span class="old">₹6,499</span></div>
+                        <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="img-wrap">
+                        <img class="primary" src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&q=80" alt="product" />
+                        <span class="badge badge-bestseller">Best Seller</span>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                        <button class="quickview">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <div class="name">Luxury Chronograph</div>
+                        <div class="stars">★★★★☆ (189)</div>
+                        <div class="price-row"><span class="current">₹4,199</span><span class="old">₹7,499</span></div>
+                        <button class="add-cart"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY WELCMART ===== -->
+    <section class="why">
+        <div class="container">
+            <div class="section-header" style="justify-content:center;text-align:center;">
+                <div>
+                    <h2 class="section-title">Why Welcmart</h2>
+                    <p class="section-sub">We make shopping better.</p>
+                </div>
+            </div>
+            <div class="why-grid">
+                <div class="why-item"><i class="fas fa-truck"></i><h4>Free Delivery</h4><p>Free delivery on eligible orders.</p></div>
+                <div class="why-item"><i class="fas fa-lock"></i><h4>Secure Payment</h4><p>Safe and secure checkout.</p></div>
+                <div class="why-item"><i class="fas fa-undo-alt"></i><h4>Easy Returns</h4><p>Hassle-free return experience.</p></div>
+                <div class="why-item"><i class="fas fa-star"></i><h4>Quality Products</h4><p>Carefully selected products.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== REVIEWS ===== -->
+    <section class="reviews">
+        <div class="container">
+            <div class="section-header" style="justify-content:center;text-align:center;">
+                <div>
+                    <h2 class="section-title">What Our Customers Say</h2>
+                    <p class="section-sub">Real reviews from real shoppers.</p>
+                </div>
+            </div>
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="text">"Absolutely love the quality and style! The shipping was super fast and the packaging was beautiful."</div>
+                    <div class="author"><div class="avatar">A</div><div><div class="name">Ananya S.</div><div class="verify">✓ Verified Buyer</div></div></div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="text">"Great selection of products at amazing prices. The customer service team was very helpful with my return."</div>
+                    <div class="author"><div class="avatar">R</div><div><div class="name">Rahul K.</div><div class="verify">✓ Verified Buyer</div></div></div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★☆</div>
+                    <div class="text">"Love the new arrivals! The fit is perfect and the fabric feels premium. Will definitely shop again."</div>
+                    <div class="author"><div class="avatar">M</div><div><div class="name">Priya M.</div><div class="verify">✓ Verified Buyer</div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOCIAL ===== -->
+    <section class="social">
+        <div class="container">
+            <div class="section-header" style="justify-content:center;text-align:center;">
+                <div>
+                    <h2 class="section-title">Follow @Welcmart</h2>
+                    <p class="section-sub">Join our community on Instagram.</p>
+                </div>
+            </div>
+            <div class="social-grid">
+                <div class="item" style="background-image:url('https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=200&q=80');"></div>
+                <div class="item" style="background-image:url('https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=200&q=80');"></div>
+                <div class="item" style="background-image:url('https://images.unsplash.com/photo-1549298916-b41d501d3772?w=200&q=80');"></div>
+                <div class="item" style="background-image:url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=200&q=80');"></div>
+                <div class="item" style="background-image:url('https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=200&q=80');"></div>
+                <div class="item" style="background-image:url('https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=200&q=80');"></div>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#"><i class="fab fa-x-twitter"></i></a>
+            </div>
+            <div style="text-align:center;margin-top:16px;">
+                <a href="#" class="btn-primary">FOLLOW US →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Join the Welcome List</h2>
+            <p>Get exclusive deals, new arrivals and trending products directly in your inbox.</p>
+            <div class="form">
+                <input type="email" placeholder="Enter your email address" />
+                <button>SUBSCRIBE</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo"><span>Welcome</span>Mart</div>
+                    <p>Your everyday shopping destination for fashion, lifestyle and trending products.</p>
+                    <div class="social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#">Men</a></li>
+                        <li><a href="#">Women</a></li>
+                        <li><a href="#">Footwear</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Beauty</a></li>
+                        <li><a href="#">Lifestyle</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Sale</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns &amp; Refunds</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Payment Methods</h4>
+                    <ul style="display:flex;flex-wrap:wrap;gap:6px;font-size:1.6rem;">
+                        <li><i class="fab fa-cc-visa"></i></li>
+                        <li><i class="fab fa-cc-mastercard"></i></li>
+                        <li><i class="fas fa-credit-card"></i></li>
+                        <li><i class="fas fa-mobile-alt"></i></li>
+                        <li><i class="fas fa-university"></i></li>
+                        <li><i class="fas fa-wifi"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copy">© 2026 Welcome Mart. All Rights Reserved.</div>
+                <div class="payments">
+                    <span>Visa</span> <span>Mastercard</span> <span>RuPay</span>
+                    <span>UPI</span> <span>Razorpay</span> <span>Net Banking</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== MOBILE BOTTOM NAV ===== -->
+    <div class="mobile-bottom-nav">
+        <a href="#" class="active"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="#"><i class="fas fa-th-large"></i><span>Categories</span></a>
+        <a href="#"><i class="fas fa-search"></i><span>Search</span></a>
+        <a href="#"><i class="far fa-heart"></i><span>Wishlist</span></a>
+        <a href="#"><i class="fas fa-shopping-bag"></i><span>Cart</span></a>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // --- Sticky Header ---
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // --- Flash Sale Timer ---
+        let totalSeconds = 5 * 3600 + 42 * 60 + 18; // 5:42:18
+        const hEl = document.getElementById('hours');
+        const mEl = document.getElementById('minutes');
+        const sEl = document.getElementById('seconds');
+
+        function updateTimer() {
+            if (totalSeconds <= 0) totalSeconds = 24 * 3600;
+            const h = Math.floor(totalSeconds / 3600);
+            const m = Math.floor((totalSeconds % 3600) / 60);
+            const s = totalSeconds % 60;
+            hEl.textContent = String(h).padStart(2, '0');
+            mEl.textContent = String(m).padStart(2, '0');
+            sEl.textContent = String(s).padStart(2, '0');
+            totalSeconds--;
+        }
+        updateTimer();
+        setInterval(updateTimer, 1000);
+
+        // --- Scroll Reveal ---
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.trending, .flash-sale, .new-arrivals, .promo-banner, .shop-category, .best-sellers, .why, .reviews, .social, .newsletter')
+            .forEach(el => {
+                el.classList.add('reveal');
+                observer.observe(el);
+            });
+
+        // --- Tab switching (New Arrivals) ---
+        const tabs = document.querySelectorAll('.tabs button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        // --- Wishlist heart animation ---
+        document.querySelectorAll('.wishlist').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const icon = btn.querySelector('i');
+                if (icon.classList.contains('far')) {
+                    icon.classList.replace('far', 'fas');
+                    btn.style.color = '#e94560';
+                    btn.style.transform = 'scale(1.2)';
+                    setTimeout(() => btn.style.transform = 'scale(1)', 200);
+                } else {
+                    icon.classList.replace('fas', 'far');
+                    btn.style.color = '';
+                }
+            });
+        });
+
+        // --- Add to Cart animation ---
+        document.querySelectorAll('.add-cart').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const orig = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> Added!';
+                this.style.background = '#2ecc71';
+                setTimeout(() => {
+                    this.innerHTML = orig;
+                    this.style.background = '';
+                }, 1200);
+                // update cart count
+                const count = document.querySelector('.cart-count');
+                if (count) {
+                    let c = parseInt(count.textContent) || 0;
+                    count.textContent = c + 1;
+                }
+            });
+        });
+
+        // --- Quick View ---
+        document.querySelectorAll('.quickview').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('✨ Quick View — product details would open in a modal.');
+            });
+        });
+
+        // --- Search overlay (simple) ---
+        const searchInput = document.querySelector('.search-wrap input');
+        if (searchInput) {
+            searchInput.addEventListener('focus', () => {
+                searchInput.parentElement.style.boxShadow = '0 0 0 4px rgba(233,69,96,0.12)';
+            });
+            searchInput.addEventListener('blur', () => {
+                searchInput.parentElement.style.boxShadow = '';
+            });
+        }
+
+        // --- Mobile nav active ---
+        document.querySelectorAll('.mobile-bottom-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('.mobile-bottom-nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // --- Newsletter subscribe ---
+        document.querySelector('.newsletter .form button').addEventListener('click', function(e) {
+            e.preventDefault();
+            const input = this.parentElement.querySelector('input');
+            if (input.value.trim()) {
+                alert('🎉 Thank you for subscribing to the Welcome List!');
+                input.value = '';
+            } else {
+                alert('Please enter your email address.');
+            }
+        });
+
+        console.log('🚀 Welcome Mart — Your Everyday Shopping Destination');
+    </script>
+</body>
+</html>
