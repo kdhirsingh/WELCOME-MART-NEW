@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome Mart — New Arrivals</title>
+    <title>Welcome Mart — Sale</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <style>
@@ -284,10 +284,21 @@
 
         /* ===== PAGE BANNER ===== */
         .page-banner {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--accent), #c0392b);
             color: #fff;
             padding: 40px 0 32px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-banner::after {
+            content: '🔥';
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 6rem;
+            opacity: 0.15;
         }
         .page-banner h1 {
             font-size: 2.8rem;
@@ -295,9 +306,20 @@
             letter-spacing: -0.02em;
         }
         .page-banner p {
-            opacity: 0.8;
+            opacity: 0.9;
             font-size: 1.1rem;
             margin-top: 4px;
+        }
+        .page-banner .sale-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            backdrop-filter: blur(4px);
         }
 
         /* ===== CATEGORY FILTER ===== */
@@ -339,9 +361,9 @@
             color: var(--accent);
         }
         .category-filter .cat-btn.active {
-            background: var(--primary);
+            background: var(--accent);
             color: #fff;
-            border-color: var(--primary);
+            border-color: var(--accent);
         }
 
         /* ===== PRODUCT GRID ===== */
@@ -491,6 +513,7 @@
         .product-card .info .current {
             font-weight: 700;
             font-size: 1.1rem;
+            color: var(--accent);
         }
         .product-card .info .old {
             color: var(--gray);
@@ -623,6 +646,7 @@
         .detail-modal .detail-info .price-detail .current {
             font-size: 1.8rem;
             font-weight: 800;
+            color: var(--accent);
         }
         .detail-modal .detail-info .price-detail .old {
             font-size: 1.1rem;
@@ -1221,6 +1245,10 @@
             .page-banner h1 {
                 font-size: 2rem;
             }
+            .page-banner::after {
+                font-size: 3rem;
+                right: 20px;
+            }
             .category-filter {
                 top: 66px;
                 padding: 12px 0 4px;
@@ -1339,7 +1367,7 @@
             <div class="container">
                 <div class="nav-inner">
                     <a href="#" class="menu-icon"><i class="fas fa-bars"></i></a>
-                    <a href="index.html">Home</a>
+                 <a href="index.html">Home</a>
                     <a href="men.html">Men</a>
                     <a href="women.html">Women</a>
                     <a href="footwear.html">Footwear</a>
@@ -1356,8 +1384,9 @@
     <!-- ===== PAGE BANNER ===== -->
     <section class="page-banner">
         <div class="container">
-            <h1>New Arrivals</h1>
-            <p>Fresh styles, just landed — be the first to shop the latest collections.</p>
+            <div class="sale-tag">🔥 LIMITED TIME OFFER</div>
+            <h1>Big Sale</h1>
+            <p>Up to 70% off on your favorite styles — shop the best deals now!</p>
         </div>
     </section>
 
@@ -1385,6 +1414,7 @@
                     <option value="featured">Sort by: Featured</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
+                    <option value="discount">Biggest Discount</option>
                     <option value="rating">Rating</option>
                 </select>
             </div>
@@ -1402,7 +1432,7 @@
                 <img src="" alt="Product" id="detailImg" />
             </div>
             <div class="detail-info">
-                <div class="category-badge" id="detailCategory">New</div>
+                <div class="category-badge" id="detailCategory">Sale</div>
                 <h2 id="detailName">Product Name</h2>
                 <div class="stars" id="detailStars">★★★★★ (124)</div>
                 <div class="price-detail">
@@ -1410,7 +1440,7 @@
                     <span class="old" id="detailOld">₹2,199</span>
                     <span class="discount" id="detailDiscount">-40%</span>
                 </div>
-                <p class="description" id="detailDesc">Brand new product with exceptional quality. Be the first to own this style.</p>
+                <p class="description" id="detailDesc">Amazing deal on this premium product. Grab it before the sale ends!</p>
                 <div class="size-selector">
                     <label>Select Size</label>
                     <div class="sizes" id="detailSizes">
@@ -1471,16 +1501,16 @@
                 <div class="row-2">
                     <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" placeholder="Riya" required />
+                        <input type="text" placeholder="Vikram" required />
                     </div>
                     <div class="form-group">
                         <label>Last Name</label>
-                        <input type="text" placeholder="Singh" required />
+                        <input type="text" placeholder="Kumar" required />
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" placeholder="riya@example.com" required />
+                    <input type="email" placeholder="vikram@example.com" required />
                 </div>
                 <div class="form-group">
                     <label>Shipping Address</label>
@@ -1580,7 +1610,7 @@
         <a href="#"><i class="fas fa-shoe-prints"></i><span>Footwear</span></a>
         <a href="#"><i class="fas fa-gem"></i><span>Accessories</span></a>
         <a href="#"><i class="fas fa-spa"></i><span>Beauty</span></a>
-        <a href="#" class="active"><i class="fas fa-star"></i><span>New</span></a>
+        <a href="#" class="active"><i class="fas fa-tag"></i><span>Sale</span></a>
         <a href="#"><i class="fas fa-search"></i><span>Search</span></a>
         <a href="#"><i class="far fa-heart"></i><span>Wishlist</span></a>
         <a href="#" id="mobileCart"><i class="fas fa-shopping-bag"></i><span>Cart</span></a>
@@ -1592,162 +1622,162 @@
             'use strict';
 
             // =============================================
-            //  PRODUCT DATA — NEW ARRIVALS
+            //  PRODUCT DATA — SALE COLLECTION
             // =============================================
             const products = [{
                 id: 1,
-                name: 'Summer Floral Dress',
+                name: 'Floral Maxi Dress',
                 category: 'women',
-                price: 1499,
+                price: 899,
                 oldPrice: 2499,
                 rating: 4.8,
                 reviews: 342,
                 image: 'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400&q=80',
-                description: 'Fresh summer floral dress with a flowy silhouette. Perfect for warm days.'
+                description: 'Elegant floral maxi dress at an incredible price. Perfect for summer parties and casual outings.'
             }, {
                 id: 2,
-                name: 'Slim Fit Chinos',
+                name: 'Slim Fit Denim Jeans',
                 category: 'men',
-                price: 1699,
-                oldPrice: 2699,
+                price: 1199,
+                oldPrice: 2999,
                 rating: 4.7,
                 reviews: 215,
-                image: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=400&q=80',
-                imageHover: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&q=80',
-                description: 'Modern slim fit chinos with a tailored look. Versatile and comfortable.'
+                image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400&q=80',
+                imageHover: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=400&q=80',
+                description: 'Classic slim fit jeans with stretch. A wardrobe essential at a steal price.'
             }, {
                 id: 3,
                 name: 'Leather Sneakers',
                 category: 'footwear',
-                price: 2499,
+                price: 1499,
                 oldPrice: 3999,
                 rating: 4.9,
                 reviews: 278,
                 image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&q=80',
-                description: 'Premium leather sneakers with a retro vibe. Comfort meets style.'
+                description: 'Premium leather sneakers with a retro vibe. Comfort meets style at half the price.'
             }, {
                 id: 4,
                 name: 'Aviator Sunglasses',
                 category: 'accessories',
-                price: 1899,
+                price: 899,
                 oldPrice: 2999,
                 rating: 4.6,
                 reviews: 189,
                 image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&q=80',
-                description: 'Classic aviator sunglasses with UV protection. A timeless accessory.'
+                description: 'Classic aviator sunglasses with UV protection. Timeless style at an unbeatable price.'
             }, {
                 id: 5,
-                name: 'Vitamin C Serum',
+                name: 'Vitamin C Brightening Serum',
                 category: 'beauty',
-                price: 1499,
+                price: 899,
                 oldPrice: 2499,
                 rating: 4.9,
                 reviews: 312,
                 image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&q=80',
-                description: 'Brightening Vitamin C serum that gives you a radiant glow.'
+                description: 'Potent Vitamin C serum that brightens skin and reduces dark spots. Massive savings on this bestseller.'
             }, {
                 id: 6,
                 name: 'Canvas Tote Bag',
                 category: 'lifestyle',
-                price: 799,
+                price: 499,
                 oldPrice: 1299,
                 rating: 4.4,
                 reviews: 167,
                 image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&q=80',
-                description: 'Spacious canvas tote for everyday use. Eco-friendly and stylish.'
+                description: 'Spacious canvas tote for everyday use. Eco-friendly and stylish at a fraction of the original price.'
             }, {
                 id: 7,
                 name: 'Oversized Hoodie',
                 category: 'women',
-                price: 1899,
+                price: 999,
                 oldPrice: 2999,
                 rating: 4.5,
                 reviews: 203,
                 image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1578587018453-44b86a4c6792?w=400&q=80',
-                description: 'Cozy oversized hoodie with a relaxed fit. Perfect for lounging.'
+                description: 'Cozy oversized hoodie with a relaxed fit. Perfect for lounging in style.'
             }, {
                 id: 8,
                 name: 'Denim Jacket',
                 category: 'men',
-                price: 2999,
+                price: 1599,
                 oldPrice: 4499,
                 rating: 4.7,
                 reviews: 256,
                 image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1551537482-f2075a1d41f2?w=400&q=80',
-                description: 'Classic denim jacket with a modern fit. A wardrobe essential.'
+                description: 'Classic denim jacket with a modern fit. A wardrobe essential at an amazing discount.'
             }, {
                 id: 9,
-                name: 'Running Shoes',
+                name: 'Running Sports Shoes',
                 category: 'footwear',
-                price: 3999,
+                price: 1999,
                 oldPrice: 5999,
                 rating: 4.8,
                 reviews: 178,
                 image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=400&q=80',
-                description: 'High-performance running shoes with responsive cushioning.'
+                description: 'High-performance running shoes with responsive cushioning. Save big on this premium pair.'
             }, {
                 id: 10,
                 name: 'Gold Chain Necklace',
                 category: 'accessories',
-                price: 2199,
+                price: 1299,
                 oldPrice: 3499,
                 rating: 4.8,
                 reviews: 145,
                 image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80',
-                description: 'Elegant gold chain necklace with a delicate pendant. A timeless piece.'
+                description: 'Elegant gold chain necklace with a delicate pendant. A timeless piece at a special price.'
             }, {
                 id: 11,
                 name: 'Hydrating Face Mask',
                 category: 'beauty',
-                price: 699,
+                price: 399,
                 oldPrice: 1199,
                 rating: 4.6,
                 reviews: 198,
                 image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&q=80',
-                description: 'Deeply hydrating face mask for a fresh, glowing complexion.'
+                description: 'Deeply hydrating face mask for a fresh, glowing complexion. An absolute steal!'
             }, {
                 id: 12,
                 name: 'Wireless Earbuds',
                 category: 'lifestyle',
-                price: 2499,
+                price: 1499,
                 oldPrice: 3999,
                 rating: 4.7,
                 reviews: 234,
                 image: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400&q=80',
-                description: 'Premium wireless earbuds with noise cancellation and crystal-clear sound.'
+                description: 'Premium wireless earbuds with noise cancellation and crystal-clear sound. Massive discount!'
             }, {
                 id: 13,
                 name: 'Pleated Midi Skirt',
                 category: 'women',
-                price: 1299,
+                price: 799,
                 oldPrice: 1999,
                 rating: 4.5,
                 reviews: 156,
                 image: 'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1578979872111-b9b9987b8075?w=400&q=80',
-                description: 'Elegant pleated midi skirt with a flattering A-line silhouette.'
+                description: 'Elegant pleated midi skirt with a flattering A-line silhouette. Style on a budget.'
             }, {
                 id: 14,
                 name: 'Slim Fit Polo T-Shirt',
                 category: 'men',
-                price: 999,
+                price: 599,
                 oldPrice: 1599,
                 rating: 4.4,
                 reviews: 189,
                 image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400&q=80',
                 imageHover: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=80',
-                description: 'Classic slim fit polo t-shirt with a modern cut. Perfect for smart casual.'
+                description: 'Classic slim fit polo t-shirt with a modern cut. Perfect for smart casual at a great price.'
             }];
 
             // =============================================
@@ -1806,6 +1836,14 @@
             let toastTimer = null;
 
             // =============================================
+            //  HELPER
+            // =============================================
+            function getDiscountPercent(product) {
+                if (!product.oldPrice || product.oldPrice <= product.price) return 0;
+                return Math.round((1 - product.price / product.oldPrice) * 100);
+            }
+
+            // =============================================
             //  RENDER PRODUCTS
             // =============================================
             function renderProducts() {
@@ -1818,6 +1856,8 @@
                     filtered.sort((a, b) => a.price - b.price);
                 } else if (currentSort === 'price-high') {
                     filtered.sort((a, b) => b.price - a.price);
+                } else if (currentSort === 'discount') {
+                    filtered.sort((a, b) => getDiscountPercent(b) - getDiscountPercent(a));
                 } else if (currentSort === 'rating') {
                     filtered.sort((a, b) => b.rating - a.rating);
                 }
@@ -1826,17 +1866,18 @@
 
                 if (filtered.length === 0) {
                     grid.innerHTML =
-                        `<div style="grid-column:1/-1;text-align:center;padding:60px 0;color:var(--gray);"><i class="fas fa-box-open" style="font-size:3rem;color:#ddd;margin-bottom:12px;"></i><p>No new arrivals in this category yet.</p></div>`;
+                        `<div style="grid-column:1/-1;text-align:center;padding:60px 0;color:var(--gray);"><i class="fas fa-tag" style="font-size:3rem;color:#ddd;margin-bottom:12px;"></i><p>No sale products in this category yet. Check back soon!</p></div>`;
                     return;
                 }
 
-                grid.innerHTML = filtered.map(p => `
+                grid.innerHTML = filtered.map(p => {
+                    const discount = getDiscountPercent(p);
+                    return `
                     <div class="product-card" data-id="${p.id}">
                         <div class="img-wrap">
                             <img class="primary" src="${p.image}" alt="${p.name}" />
                             <img class="secondary" src="${p.imageHover}" alt="${p.name}" />
-                            <span class="badge badge-new">New</span>
-                            ${p.oldPrice > p.price ? `<span class="badge badge-sale" style="top:44px;left:10px;">${Math.round((1 - p.price/p.oldPrice)*100)}% OFF</span>` : ''}
+                            <span class="badge badge-sale">${discount}% OFF</span>
                             <button class="wishlist" data-id="${p.id}"><i class="far fa-heart"></i></button>
                             <button class="quick-add" data-id="${p.id}"><i class="fas fa-shopping-bag"></i> Quick Add</button>
                         </div>
@@ -1846,11 +1887,12 @@
                             <div class="stars">${'★'.repeat(Math.floor(p.rating))}${p.rating % 1 >= 0.5 ? '★' : ''} (${p.reviews})</div>
                             <div class="price-row">
                                 <span class="current">₹${p.price.toLocaleString()}</span>
-                                ${p.oldPrice > p.price ? `<span class="old">₹${p.oldPrice.toLocaleString()}</span><span class="discount">-${Math.round((1 - p.price/p.oldPrice)*100)}%</span>` : ''}
+                                <span class="old">₹${p.oldPrice.toLocaleString()}</span>
+                                <span class="discount">-${discount}%</span>
                             </div>
                         </div>
                     </div>
-                `).join('');
+                `}).join('');
 
                 document.querySelectorAll('.product-card').forEach(card => {
                     card.addEventListener('click', function(e) {
@@ -1918,17 +1960,17 @@
                 qty = 1;
                 qtyValue.textContent = qty;
                 selectedSize = 'One Size';
+                const discount = getDiscountPercent(product);
 
                 detailImg.src = product.image;
-                detailCategory.textContent = product.category.toUpperCase() + ' • NEW';
+                detailCategory.textContent = product.category.toUpperCase() + ' • SALE';
                 detailName.textContent = product.name;
                 detailStars.textContent = '★'.repeat(Math.floor(product.rating)) + (product.rating % 1 >= 0.5 ? '★' : '') +
                     ` (${product.reviews})`;
                 detailPrice.textContent = `₹${product.price.toLocaleString()}`;
-                detailOld.textContent = product.oldPrice > product.price ? `₹${product.oldPrice.toLocaleString()}` : '';
-                detailDiscount.textContent = product.oldPrice > product.price ?
-                    `-${Math.round((1 - product.price/product.oldPrice)*100)}%` : '';
-                detailDesc.textContent = product.description;
+                detailOld.textContent = `₹${product.oldPrice.toLocaleString()}`;
+                detailDiscount.textContent = `-${discount}%`;
+                detailDesc.textContent = product.description + ' Grab this amazing deal before it\'s gone!';
 
                 detailSizes.querySelectorAll('button').forEach(b => {
                     b.classList.toggle('active', b.dataset.size === 'One Size');
@@ -2185,7 +2227,7 @@
             renderProducts();
             updateCartUI();
 
-            console.log('🚀 Welcome Mart — New Arrivals ready.');
+            console.log('🚀 Welcome Mart — Sale Collection ready.');
 
         })();
     </script>
